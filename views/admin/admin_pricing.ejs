@@ -1,0 +1,75 @@
+<% include ../_layouts/admin_sidebar %>
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Спа и балнеология</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">
+                            <%= firstTableTitle %>
+                        </h5>
+                    </div>
+                    <form action="/admin/pricing" method="POST">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <% let firstRowLength = firstTable[0].length %>
+                                    <% for(i = 0; i < firstRowLength; i++ ) {%>
+                                    <th scope="col" colspan="2">
+                                        <%= firstTable[0][i] %>
+                                    </th>
+                                    <% } %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(i = 1; i < firstTable.length; i++ ) {%>
+                                <tr>
+                                    <% for(j = 0; j < firstTable[i].length; j++ ) {%>
+                                    <th>
+                                        <input type="text" value="  <%= firstTable[i][j] %>" name="<%= i %><%= j %>">
+
+                                    </th>
+                                    
+                                    <% } %>
+
+                                    <th>Изтрий ред</th>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+
+                        <input type="hidden" value="<%= firstTable.length %>" name="firstTableRows"/>
+                        <input type="hidden" value="<%= firstTable[1].length %>" name="firstTableCols"/>
+                        <input type="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+<% include ../_layouts/admin_footer %>

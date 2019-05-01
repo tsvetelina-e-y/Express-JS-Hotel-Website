@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700");
+body {
+  font-family: 'Roboto', 'sans-serif'; }
+
+.top-nav {
+  background: rgba(248, 246, 243, 0.904);
+  height: 40px;
+  padding: .3em;
+  border-top: 3px solid #7eac42;
+  color: #7eac42; }
+  .top-nav .social-medias {
+    display: inline;
+    border-right: 1px solid rgba(248, 246, 243, 0.904);
+    margin-right: 20px;
+    float: right; }
+    .top-nav .social-medias a i {
+      color: #7eac42;
+      padding: 0 20px 0 10px;
+      font-size: 1.4em; }
+  .top-nav .toggle {
+    float: right; }
+    .top-nav .toggle span {
+      position: relative;
+      display: inline;
+      vertical-align: middle;
+      height: 30px;
+      margin-top: -20px; }
+    .top-nav .toggle input[type="checkbox"] {
+      position: relative;
+      width: 40px;
+      height: 20px;
+      -webkit-appearance: none;
+      background: #7eac42;
+      outline: none;
+      border-radius: 20px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      transition: .5s; }
+      .top-nav .toggle input[type="checkbox"]:before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        top: 0;
+        left: 0;
+        background: #fff;
+        transform: scale(1.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: .5s; }
+    .top-nav .toggle input:checked[type="checkbox"] {
+      background: #f7b733; }
+      .top-nav .toggle input:checked[type="checkbox"]:before {
+        left: 20px; }
+    .top-nav .toggle:after {
+      content: '';
+      display: block;
+      width: 100%;
+      clear: both; }
+
+nav {
+  height: 80px;
+  background: white !important;
+  margin-bottom: 5px !important;
+  box-shadow: 0px 0px 4px rgba(1, 1, 1, 0.1); }
+  nav a.navbar-brand {
+    height: 130%;
+    width: auto;
+    margin-left: 17px;
+    color: #7eac42 !important;
+    line-height: 130%;
+    text-align: center;
+    font-weight: 300;
+    border-radius: 0%;
+    padding: 13px;
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-left: -15px; }
+  nav ul {
+    font-size: 1rem; }
+    nav ul li {
+      margin: 0px 7px; }
+
+.navbar-default {
+  border: none !important;
+  background: none !important;
+  margin: 0;
+  min-height: 0 !important;
+  padding: 0 !important; }
+
+.content {
+  background-size: auto;
+  background-position: top right;
+  z-index: -10;
+  position: relative; }
+
+.amenities-c {
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+  z-index: -1;
+  display: inline-block;
+  background: rgba(248, 246, 243, 0.904);
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #FFFFFF, rgba(248, 246, 243, 0.904));
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #FFFFFF, rgba(248, 246, 243, 0.904));
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .amenities-c .amenities-image {
+    width: 100%;
+    text-align: center; }
+  .amenities-c .amenities-image img {
+    width: 90%;
+    margin-top: 20px; }
+  .amenities-c .dec-square {
+    width: 500px;
+    height: 500px;
+    transform: rotate(0deg);
+    left: -100px;
+    background: #ECF0E1;
+    z-index: 1; }
+  .amenities-c h2 {
+    z-index: 2;
+    display: block;
+    position: relative;
+    color: #7eac42;
+    font-size: 1.3rem;
+    padding: 25px 0 10px 10px; }
+  .amenities-c .amenities-list {
+    position: relative;
+    z-index: 5; }
+    .amenities-c .amenities-list ul {
+      list-style: none !important;
+      padding: 15px 15px; }
+      .amenities-c .amenities-list ul li {
+        padding: 5px;
+        color: #7eac42; }
+    .amenities-c .amenities-list span {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #7eac42;
+      margin-right: 5px;
+      border: 4px solid rgba(255, 255, 255, 0.3); }
+
+.top-title {
+  margin-bottom: 2em; }
+  .top-title .container {
+    padding: 1.5em 0 1em 0; }
+    .top-title .container h1 {
+      color: #f7b733;
+      font-size: 2em;
+      font-weight: 200;
+      padding: 0;
+      margin: 0; }
+      .top-title .container h1 i {
+        margin-right: 10px; }
+
+.pricing-table-c {
+  background: white;
+  padding: 13px;
+  display: inline-block;
+  padding-top: 0px; }
+  .pricing-table-c .pricing-table-in {
+    padding: 20px;
+    padding-top: 5px;
+    padding-left: 25px; }
+    .pricing-table-c .pricing-table-in h1 {
+      color: #7eac42;
+      font-size: 2rem;
+      padding: 15px 8px; }
+    .pricing-table-c .pricing-table-in .tables-container {
+      background: #fff;
+      padding: 13px;
+      padding-top: 0;
+      margin-bottom: 10px; }
+      .pricing-table-c .pricing-table-in .tables-container .table1, .pricing-table-c .pricing-table-in .tables-container .table2 {
+        width: 90%;
+        margin: auto;
+        padding: 15px;
+        color: #7eac42; }
+        .pricing-table-c .pricing-table-in .tables-container .table1 tr td, .pricing-table-c .pricing-table-in .tables-container .table2 tr td {
+          padding: 10px 22px;
+          border-bottom: 2px solid rgba(248, 246, 243, 0.904);
+          font-weight: 500; }
+        .pricing-table-c .pricing-table-in .tables-container .table1 tr td:nth-child(2), .pricing-table-c .pricing-table-in .tables-container .table2 tr td:nth-child(2) {
+          font-size: 18px;
+          font-weight: 600; }
+        .pricing-table-c .pricing-table-in .tables-container .table1 thead, .pricing-table-c .pricing-table-in .tables-container .table2 thead {
+          background: #f7b733;
+          color: white;
+          border-bottom: none;
+          font-weight: 200;
+          box-shadow: 1px 1px 0.1px rgba(1, 1, 1, 0.04); }
+          .pricing-table-c .pricing-table-in .tables-container .table1 thead i, .pricing-table-c .pricing-table-in .tables-container .table2 thead i {
+            font-size: .8em;
+            margin-right: 3px;
+            padding: 5px;
+            position: relative;
+            z-index: 1;
+            margin-left: -10px; }
+          .pricing-table-c .pricing-table-in .tables-container .table1 thead td, .pricing-table-c .pricing-table-in .tables-container .table2 thead td {
+            font-size: 17px;
+            text-transform: uppercase;
+            font-weight: 300;
+            border-bottom: none; }
+      .pricing-table-c .pricing-table-in .tables-container .table2 {
+        width: 90%;
+        margin: auto;
+        padding: 15px;
+        color: #7eac42; }
+        .pricing-table-c .pricing-table-in .tables-container .table2 thead {
+          background: #f7b733;
+          color: white;
+          border-bottom: none;
+          font-weight: 200; }
+          .pricing-table-c .pricing-table-in .tables-container .table2 thead td {
+            font-size: 17px;
+            text-transform: uppercase;
+            font-weight: 300; }
+    .pricing-table-c .pricing-table-in .tax-note {
+      margin: 25px 15px 10px 15px;
+      padding: 10px 15px;
+      color: #7eac42;
+      font-size: 0.9rem;
+      color: #f7b733; }
+    .pricing-table-c .pricing-table-in .pool-note {
+      margin: 0px 15px 25px 15px;
+      padding: 5px 15px;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #7eac42; }

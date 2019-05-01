@@ -1,0 +1,114 @@
+<% include ../_layouts/admin_sidebar %>
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Начална страница</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <form class="form-horizontal" action="/admin/pages/landing-page" method="POST">
+                        <div class="card-body">
+                            <h4 class="card-title">Съдържание по страница</h4>
+                            <div class="form-group row">
+                                <label for="compTitle" class="col-sm-3 text-right control-label col-form-label">Заглавие</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="compTitle" id="compTitle" placeholder=""
+                                        value="<%= compTitle %>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Подзаглавие</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="compSubTitle" id="compSubTitle"
+                                        placeholder="" value="<%= compSubTitle %>">
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group row">
+                                <label class="col-md-3">Картина фон</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="validatedCustomFile">
+                                        <label class="custom-file-label" for="validatedCustomFile">Choose
+                                            file...</label>
+
+
+
+
+                                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <img id="noimage" src="/images/<%= headerBgImg %>" alt="" style="width: 200px; margin-top: 10px">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <h4 class="card-title">За нас</h4>
+
+                            <div class="form-group row">
+                                <label for="title1" class="col-sm-3 text-right control-label col-form-label">Заглавие</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="paraTitle1" id="title1" value="<%= paragraphTitle %>">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="title2" class="col-sm-3 text-right control-label col-form-label">Подзаглавие</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="paraTitle2" id="title2" value="<%= paragraphSubTitle %>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="title3" class="col-sm-3 text-right control-label col-form-label">Заглавие 3</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="paraTitle3" id="title3" value="<%= paragraphText %>">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="paragraph" class="col-sm-3 text-right control-label col-form-label">Текст</label>
+                                <div class="col-sm-9">
+                                    <textarea id="paragraph" rows="6" name="paragraph" class="form-control" value=""><%= paragraphText %></textarea>
+                                </div>
+                            </div>
+
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+
+<% include ../_layouts/admin_footer %>

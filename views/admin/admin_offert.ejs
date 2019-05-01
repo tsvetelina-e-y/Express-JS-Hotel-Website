@@ -1,0 +1,111 @@
+<% include ../_layouts/admin_sidebar %>
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Спа и балнеология</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">
+
+                        </h5>
+                    </div>
+                    <form action="/admin/offert/easter" method="POST">
+                        <div class="form-group row p-2">
+                            <label for="title1" class="col-sm-6 control-label col-form-label">Заглавие</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="paraTitle1" id="title1" value="<%= title %>">
+                            </div>
+                        </div>
+                        <div class="form-group row p-2">
+                            <label for="title1" class="col-sm-6 control-label col-form-label">Заглавие</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="paraTitle1" id="title1" value="<%= title %>">
+                            </div>
+                        </div>
+                        <table class="table p-2">
+                            <thead>
+                                <tr>
+                                    <% let firstRowLength = firstTable[0].length %>
+                                    <% for(i = 0; i < firstRowLength; i++ ) {%>
+                                    . <th scope="col" colspan="1">
+                                        <%= firstTable[0][i] %>
+                                    </th>
+                                    <% } %>
+                                    <th> action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(i = 1; i < firstTable.length; i++ ) {%>
+                                <tr>
+                                    <% for(j = 0; j < firstTable[i].length; j++ ) {%>
+                                    <th>
+                                        <input type="text" value="  <%= firstTable[i][j] %>" name="<%= i %><%= j %>">
+
+                                    </th>
+
+                                    <% } %>
+
+                                    <th>Изтрий ред</th>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <textarea id="paragraph" rows="10" name="content" class="form-control" value=""><%= text %></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row p-2">
+                            <label class="col-md-2 ">Картина фон</label>
+                            <div class="col-md-9">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="validatedCustomFile">
+                                    <label class="custom-file-label" for="validatedCustomFile">Choose
+                                        file...</label>
+
+                                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <img id="noimage" src="/images/<%= image %>" alt="" style="width: 200px; margin-top: 10px">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <input type="hidden" value="<%= firstTable.length %>" name="firstTableRows" />
+                        <input type="hidden" value="<%= firstTable[1].length %>" name="firstTableCols" />
+                        <input type="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+<% include ../_layouts/admin_footer %>
