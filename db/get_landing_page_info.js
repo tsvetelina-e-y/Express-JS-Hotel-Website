@@ -6,6 +6,7 @@ var ParagraphComponent = require('../models/ParagraphComponent');
 var TitleComponent = require('../models/TitleComponent');
 var ImageComponent = require('../models/ImageComponent');
 var LocationComponent = require('../models/LocationComponent');
+var AmenitiesComponent = require('../models/AmenitiesComponent');
 var Page = require('../models/Page');
 
 
@@ -24,6 +25,7 @@ module.exports = function () {
                 let paragraphId = page.components.get('aboutUsParagraph');
                 let headerBgImgId = page.components.get('headerBgImage');
                 let locationId = page.components.get('location');
+                let amenitiesId = page.components.get('amenities');
 
                 let findTitlePromise = new Promise(function (resolve, reject) {
                     TitleComponent.findById(titleId, function (err, resultTitle) {
@@ -99,9 +101,22 @@ module.exports = function () {
 
                 });
 
-                Promise.all([findTitlePromise, findLocationPromise, findParapgraphPromise, findHeaderImage]).then(function () {
-                    resolve(resultObj);
+                let findAmenities = new Promise(function (resolve, reject) {
+                    AmenitiesComponent.findById(amenitiesId, function (err, result) {
+                        if (err) {
+                            reject(err);
+                        } else {
+
+                            resultObj['amenities'] = result.amenities;
+                            resolve();
+                        }
+                    });
                 });
+
+                Promise.all([findTitlePromise, findLocationPromise
+                    , findParapgraphPromise, findHeaderImage, findAmenities]).then(function () {
+                        resolve(resultObj);
+                    });
 
             }
 

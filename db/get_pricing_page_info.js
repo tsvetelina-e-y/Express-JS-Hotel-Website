@@ -13,6 +13,7 @@ module.exports = function () {
 
             let resultObj = {};
             let firstTableId = page.components.get('firstTable');
+            let secondTableId = page.components.get('secondTable');
 
             let findFirstTablePromise = new Promise(function (resolve, reject) {
                 TableComponent.findById(firstTableId, function (err, table) {
@@ -28,7 +29,21 @@ module.exports = function () {
                 });
             });
 
-            Promise.all([findFirstTablePromise]).then(function () {
+            let findSecondTablePromise = new Promise(function (resolve, reject) {
+                TableComponent.findById(secondTableId, function (err, table) {
+
+                    if (err) {
+                        reject(err);
+                    }
+
+                    resultObj['secondTable'] = table.cells;
+                    resultObj['secondTableTitle'] = ' Втора таблица';
+                    resolve();
+
+                });
+            });
+
+            Promise.all([findFirstTablePromise, findSecondTablePromise]).then(function () {
                 resolve(resultObj);
             });
 

@@ -20,6 +20,8 @@ router.get('/pricing', function (req, res) {
 
 router.post('/pricing', function (req, res) {
 
+    console.log(req.body);
+
     Page.findOne({ slug: 'pricing' }, function (err, page) {
 
         if (err) {
@@ -27,6 +29,7 @@ router.post('/pricing', function (req, res) {
         }
 
         let firstTableId = page.components.get('firstTable');
+        let secondTableId = page.components.get('secondTable');
         TableComponent.findById(firstTableId, function (err, table) {
 
             if (err) {
@@ -42,7 +45,49 @@ router.post('/pricing', function (req, res) {
             for (let i = 1; i < rows; i++) {
                 for (let j = 0; j < cols; j++) {
 
-                    if (table.cells[i][j].trim() !== req.body[i + "" + j].toString().trim()) {
+                    if (table.cells[i][j].trim() !== req.body["first" + "" + i + "" + j].toString().trim()) {
+
+                        identifiersForUpdate.push(i + '.' + j);
+
+                    }
+                }
+            }
+
+            async.eachSeries(identifiersForUpdate, function (identifier, next) {
+
+                //cells.1.0 - field cell which is array, then second row, first element
+                let concatIdentifier = "cells." + identifier;
+                console.log('----' + identifier);
+                TableComponent.update(
+                    { "slug": "price_for_night_breakfast" },
+                    { "$set": { [concatIdentifier]: req.body["first" + identifier.replace('.', '')].trim() } }, function (err, tableUpdated) {
+                        if (err) console.log(err);
+                        console.log(JSON.stringify(tableUpdated));
+
+                        next();
+                    });
+
+            });
+
+
+        });
+
+        TableComponent.findById(secondTableId, function (err, table) {
+
+            if (err) {
+                console.log(err);
+            }
+
+            let rows = req.body.secondTableRows;
+            let cols = req.body.secondTableCols;
+            let identifiersForUpdate = [];
+
+
+            //get just indexes for values that were changed
+            for (let i = 1; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+
+                    if (table.cells[i][j].trim() !== req.body["second" + "" + i + "" + j].toString().trim()) {
 
                         identifiersForUpdate.push(i + '.' + j);
 
@@ -55,8 +100,8 @@ router.post('/pricing', function (req, res) {
                 //cells.1.0 - field cell which is array, then second row, first element
                 let concatIdentifier = "cells." + identifier;
                 TableComponent.update(
-                    { "slug": "price_for_night_breakfast" },
-                    { "$set": { [concatIdentifier]: req.body[identifier.replace('.', '')].trim() } }, function (err, tableUpdated) {
+                    { "slug": "extra_fav" },
+                    { "$set": { [concatIdentifier]: req.body["second" + identifier.replace('.', '')].trim() } }, function (err, tableUpdated) {
                         if (err) console.log(err);
                         console.log(JSON.stringify(tableUpdated));
 

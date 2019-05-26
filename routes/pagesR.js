@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 //get public landing page
-router.get('/landing-page', function (req, res) {
+router.get('/', function (req, res) {
 
   var getInfoObj = require('../db/get_landing_page_info.js');
   getInfoObj().then(function (resultObj) {
@@ -14,30 +14,49 @@ router.get('/landing-page', function (req, res) {
 
 });
 
-//get public pricing
-router.get('/pricing', function (req, res) {
+router.get('/base', function (req, res) {
 
-    res.render('pricing');
+  var getInfoObj = require('../db/get_about_us_info');
+  getInfoObj().then(function (resultObj) {
+    res.render('base', resultObj);
+  });
 
 });
 
+//get public pricing
+router.get('/pricing', function (req, res) {
 
 
-//ТОДО get user spa........
-
-//get public spa
-router.get('admin/spa', function (req, res) {
-
-  // var getInfoObj = require('../db/get_landing_page_info.js');
+  var getInfoObj = require('../db/get_pricing_page_info');
   getInfoObj().then(function (resultObj) {
+    res.render('pricing', resultObj);
+  });
 
-    res.render('land_page', resultObj);
 
+});
+
+router.get('/spa', function (req, res) {
+
+  var getInfoObj = require('../db/get_spa_page_info');
+  getInfoObj().then(function (resultObj) {
+    res.render('spa', resultObj);
   });
 
 });
 
 
+
+//get public spa
+router.get('/offerts/:slug', function (req, res) {
+
+
+  let getOffertPageInfo = require('../db/get_offert_page_info');
+
+  getOffertPageInfo(req.params.slug).then(function (resultObj) {
+    res.render('offert', resultObj);
+  });
+
+});
 
 
 module.exports = router;

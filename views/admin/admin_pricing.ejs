@@ -47,10 +47,10 @@
                                 <tr>
                                     <% for(j = 0; j < firstTable[i].length; j++ ) {%>
                                     <th>
-                                        <input type="text" value="  <%= firstTable[i][j] %>" name="<%= i %><%= j %>">
+                                        <input type="text" value="  <%= firstTable[i][j] %>" name="first<%= i %><%= j %>">
 
                                     </th>
-                                    
+
                                     <% } %>
 
                                     <th>Изтрий ред</th>
@@ -59,8 +59,38 @@
                             </tbody>
                         </table>
 
-                        <input type="hidden" value="<%= firstTable.length %>" name="firstTableRows"/>
-                        <input type="hidden" value="<%= firstTable[1].length %>" name="firstTableCols"/>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <% let firstRowLength2 = secondTable[0].length %>
+                                    <% for(i = 0; i < firstRowLength2; i++ ) {%>
+                                    <th scope="col" colspan="2">
+                                        <%= firstTable[0][i] %>
+                                    </th>
+                                    <% } %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(i = 1; i < secondTable.length; i++ ) {%>
+                                <tr>
+                                    <% for(j = 0; j < secondTable[i].length; j++ ) {%>
+                                    <th>
+                                        <input type="text" value="  <%= secondTable[i][j] %>" name="second<%= i %><%= j %>">
+
+                                    </th>
+
+                                    <% } %>
+
+                                    <th><a>  Изтрий ред</a></th>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+
+                        <input type="hidden" value="<%= firstTable.length %>" name="firstTableRows" />
+                        <input type="hidden" value="<%= firstTable[1].length %>" name="firstTableCols" />
+                        <input type="hidden" value="<%= secondTable.length %>" name="secondTableRows" />
+                        <input type="hidden" value="<%= secondTable[1].length %>" name="secondTableCols" />
                         <input type="submit">
                     </form>
                 </div>

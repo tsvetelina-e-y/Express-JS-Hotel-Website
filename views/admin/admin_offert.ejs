@@ -26,30 +26,32 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title m-b-0">
 
-                        </h5>
                     </div>
-                    <form action="/admin/offert/easter" method="POST">
+                    <form action="/admin/offerts/easter" method="POST">
                         <div class="form-group row p-2">
-                            <label for="title1" class="col-sm-6 control-label col-form-label">Заглавие</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="paraTitle1" id="title1" value="<%= title %>">
+                            <label for="title1" class="col-sm-2 control-label col-form-label">Заглавие</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="title" id="title1" value="<%= title %>">
                             </div>
                         </div>
                         <div class="form-group row p-2">
-                            <label for="title1" class="col-sm-6 control-label col-form-label">Заглавие</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="paraTitle1" id="title1" value="<%= title %>">
+                            <label for="title1" class="col-sm-2 control-label col-form-label">Заглавие</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="subTitle" id="title1" value="<%= title %>">
                             </div>
                         </div>
-                        <table class="table p-2">
+
+                        <table class="table p-2 m-b-6">
+                            <h5 class="card-title m-b-2">
+                                Таблица
+                            </h5>
                             <thead>
                                 <tr>
                                     <% let firstRowLength = firstTable[0].length %>
                                     <% for(i = 0; i < firstRowLength; i++ ) {%>
-                                    . <th scope="col" colspan="1">
-                                        <%= firstTable[0][i] %>
+                                    <th scope="col" colspan="1">
+                                        <input type="text" value="<%= firstTable[0][i] %>" name="0<%= i %>">
                                     </th>
                                     <% } %>
                                     <th> action</th>
@@ -73,14 +75,17 @@
                         </table>
 
                         <div class="form-group row">
-                            <div class="col-sm-9">
+                            <h5 class="card-title m-b-0 col-md-2">
+                                Съдържание
+                            </h5>
+                            <div class="col-sm-10">
                                 <textarea id="paragraph" rows="10" name="content" class="form-control" value=""><%= text %></textarea>
                             </div>
                         </div>
 
                         <div class="form-group row p-2">
                             <label class="col-md-2 ">Картина фон</label>
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="validatedCustomFile">
                                     <label class="custom-file-label" for="validatedCustomFile">Choose
@@ -95,17 +100,110 @@
                         </div>
 
 
-                        <input type="hidden" value="<%= firstTable.length %>" name="firstTableRows" />
-                        <input type="hidden" value="<%= firstTable[1].length %>" name="firstTableCols" />
+
                         <input type="submit">
                     </form>
                 </div>
             </div>
         </div>
 
+        <button class="btn btn-primary btn-action" data-url="/echo?someval=mydatavalue2" id="btnAction2">Button API
+            Call 2</button>
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/admin/add-image" method="post" enctype="multipart/form-data" >
+                            <input type="file" name="image" id="form">
+                            <input type="submit" id="addImage">
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-</div>
+
 
 <% include ../_layouts/admin_footer %>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+<script>
+
+    $("#form").submit(function (e) {
+        e.preventDefault();
+    });
+
+    $('#addImage').click(function (e) {
+        console.log('here')
+        e.preventDefault;
+        var files = $('#form').get(0).files;
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/add-image",
+
+            success: function (data) {
+                $('body').append(data);
+                
+                return(false);
+            },
+            error: function (error) {
+                // handle error
+            },
+            enctype: 'multipart/form-data',
+            async: true,
+            data: new FormData(files),
+            // cache: false,
+            // contentType: false,
+            // processData: false,
+
+        });
+
+       return false;
+    });
+
+    $('.btn-action').click(function () {
+        // $('#myModal').modal('show');
+
+        $.ajax({
+            type: "GET",
+            url: '/admin/images',
+            dataType: 'json',
+
+            success: function (res) {
+
+                // get the ajax response data
+                var data = res.body;
+                // update modal content
+
+                // let content = `<div class="custom-file">
+                //                         <input type="file" class="" id="file" name="image">
+
+                //                         <div class="invalid-feedback">Example invalid custom file feedback</div>
+                //                     </div>
+                //            `;
+                // $('.modal-body').html(content);
+                $(res).each(function (i, element) {
+
+                    $('.modal-body').append(`<img src="/images/${element}" style="width: 200px; margin-top: 10px"/>`);
+                });
+                // 
+                // show modal
+                $('#myModal').modal('show');
+
+            },
+            error: function (request, status, error) {
+                console.log("ajax call went wrong:" + request.responseText);
+            }
+        });
+    });
+</script>

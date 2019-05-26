@@ -15,7 +15,7 @@ module.exports = function (pageSlug) {
 
             if (err) reject(err);
 
-
+console.log('----------------' + page);
             let titleId = page.components.get("title");
             let textId = page.components.get("text");
             let tableId = page.components.get("firstTable");

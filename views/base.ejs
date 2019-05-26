@@ -16,22 +16,15 @@
                     <h2>Комплексът предлага</h2>
                     <div class="amenities-list">
                         <ul>
+
+                            <% amenities.forEach(function(amenity){ %>
                             <li>
-                                <span></span>Балнеоложки услуги</li>
-                            <li>
-                                <span></span>Хидромасаж с минерална вода</li>
-                            <li>
-                                <span></span>Тангентор</li>
-                            <li>
-                                <span></span>Джакузи</li>
-                            <li>
-                                <span></span>Солариум</li>
-                            <li>
-                                <span></span>Сауна</li>
-                            <li>
-                                <span></span>Закрит и открит плувен басейн</li>
-                            <li>
-                                <span></span>Плаж</li>
+                                <span></span>
+                                <%= amenity %>
+                            </li>
+
+                            <% }) %>
+
                         </ul>
                     </div>
                 </div>

@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <form class="form-horizontal" action="/admin/pages/landing-page" method="POST">
+                    <form class="form-horizontal" action="/admin/landing-page" method="POST" id="form">
                         <div class="card-body">
                             <h4 class="card-title">Съдържание по страница</h4>
                             <div class="form-group row">
@@ -52,9 +52,6 @@
                                         <input type="file" class="custom-file-input" id="validatedCustomFile">
                                         <label class="custom-file-label" for="validatedCustomFile">Choose
                                             file...</label>
-
-
-
 
                                         <div class="invalid-feedback">Example invalid custom file feedback</div>
                                     </div>
@@ -94,9 +91,33 @@
                                 </div>
                             </div>
 
+                            <h4 class="card-title">За нас</h4>
+
+                            <div class="form-group row">
+                                <label for="title1" class="col-sm-3 text-right control-label col-form-label">:</label>
+
+                                <div class="col-sm-9">
+                                    <div class="tag-display-area" id="display-area">
+
+                                        <% amenities.forEach(function(amenity) {%>
+
+                                        <span class="tag-wrapper">
+                                            <span class="tag-span">
+                                                <%= amenity %></span>
+                                            <span class="remove-tag">x</span>
+                                        </span>
+
+                                        <% }); %>
+                                    </div>
+                                    <input type="hidden" name="amenities" id="input-hidden">
+                                    <input type="text" class="form-control" id="tags-input">
+                                    <div class="tag-plus">+</div>
+                                </div>
+                            </div>
+
                             <div class="border-top">
                                 <div class="card-body">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                                 </div>
                             </div>
                     </form>
@@ -108,7 +129,71 @@
     </div>
 </div>
 
-</div>
 
 
 <% include ../_layouts/admin_footer %>
+
+<script>
+
+    'use strict'
+
+    $(document).on("keydown", ":input:not(textarea)", function (event) {
+        return event.key != "Enter";
+    });
+
+
+    $("#tags-input").on('keyup', function (e) {
+        e.preventDefault();
+        if (e.keyCode == 13) {
+
+            e.preventDefault();
+            addTag();
+        }
+    });
+
+    $('.tag-plus').click(function (e) {
+        e.preventDefault();
+        addTag();
+
+    });
+
+    function addTag() {
+
+        if ($('#tags-input').val() == '') {
+            return;
+        }
+
+        let element = $('<span></span>').addClass('tag-wrapper');
+        let tag = $('<span></span>').addClass('tag-span').text($('#tags-input').val());
+        $('#input-hidden').val($('#input-hidden').val() + ';' + $('#tags-input').val());
+        let cross = $('<span>x</span>').addClass('remove-tag');
+        $(cross).click(function () {
+            $(this).parent().remove();
+        });
+
+        $('#display-area').append(element.append(tag).append(cross));
+        $('#tags-input').val('');
+    }
+
+    $('.remove-tag').click(function () {
+        $(this).parent().remove();
+    });
+
+    function updateHiddenInput() {
+        let result = '';
+        let arrayTags = $('.tag-span');
+
+        for (let i = 0; i < arrayTags.length; i++) {
+            //tuka mahame xsas
+            result += $(arrayTags[i]).text() + ';';
+        }
+        console.log(result);
+        $('#input-hidden').val(result);
+    }
+
+
+    $("form").submit(function () {
+        // Let's find the input to check
+        updateHiddenInput();
+    });
+</script>
