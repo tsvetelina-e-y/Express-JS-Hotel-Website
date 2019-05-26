@@ -1,0 +1,38 @@
+/* START TAGS */
+.tag-display-area {
+    margin-bottom: 15px;
+}
+
+.tag-wrapper {
+    position: relative;
+}
+
+.tag-span {
+    background: #dad7d7;
+    padding: 4px 15px 4px 4px;
+    font-size: 13px;
+    margin-right: 10px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px rgba(1, 1, 1, .2);
+    color: lightslategrey;
+}
+
+.remove-tag {
+    background: white;
+    border-radius: 50%;
+    padding: 4px 6px;
+    ;
+    font-size: 10px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px rgba(1, 1, 1, .2);
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    z-index: 100;
+}
+
+.tag-plus {
+    display: inline-block;
+    cursor: pointer;
+}
+/* END TAGS */
