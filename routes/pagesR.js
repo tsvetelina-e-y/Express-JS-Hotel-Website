@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/', function (req, res) {
 
   var getInfoObj = require('../db/get_landing_page_info.js');
-  getInfoObj().then(function (resultObj) {
+  getInfoObj(req).then(function (resultObj) {
 
     res.render('land_page', resultObj);
 
@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
 router.get('/base', function (req, res) {
 
   var getInfoObj = require('../db/get_about_us_info');
-  getInfoObj().then(function (resultObj) {
+  getInfoObj(req).then(function (resultObj) {
     res.render('base', resultObj);
   });
 
@@ -28,7 +28,7 @@ router.get('/pricing', function (req, res) {
 
 
   var getInfoObj = require('../db/get_pricing_page_info');
-  getInfoObj().then(function (resultObj) {
+  getInfoObj(req).then(function (resultObj) {
     res.render('pricing', resultObj);
   });
 
@@ -38,7 +38,7 @@ router.get('/pricing', function (req, res) {
 router.get('/spa', function (req, res) {
 
   var getInfoObj = require('../db/get_spa_page_info');
-  getInfoObj().then(function (resultObj) {
+  getInfoObj(req).then(function (resultObj) {
     res.render('spa', resultObj);
   });
 

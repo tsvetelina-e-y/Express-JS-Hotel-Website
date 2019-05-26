@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
 
 var locationComponentSchema = mongoose.Schema({
-    address: {
+    address_bg: {
+        type: String,
+        required: false
+    },
+    address_en: {
         type: String,
         required: false
     },

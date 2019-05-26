@@ -13,7 +13,7 @@ router.get('/pricing', function (req, res) {
 
     let getPricingInfo = require('../db/get_pricing_page_info');
 
-    getPricingInfo().then(function (resultObj) {
+    getPricingInfo(req).then(function (resultObj) {
         res.render('admin/admin_pricing', resultObj);
     });
 });
@@ -28,6 +28,7 @@ router.post('/pricing', function (req, res) {
             console.log(err);
         }
 
+        let languageLiteral = req.app.locals.language;
         let firstTableId = page.components.get('firstTable');
         let secondTableId = page.components.get('secondTable');
         TableComponent.findById(firstTableId, function (err, table) {
@@ -56,8 +57,8 @@ router.post('/pricing', function (req, res) {
             async.eachSeries(identifiersForUpdate, function (identifier, next) {
 
                 //cells.1.0 - field cell which is array, then second row, first element
-                let concatIdentifier = "cells." + identifier;
-                console.log('----' + identifier);
+                let concatIdentifier = "cells_" + languageLiteral  + "." + identifier;
+                
                 TableComponent.update(
                     { "slug": "price_for_night_breakfast" },
                     { "$set": { [concatIdentifier]: req.body["first" + identifier.replace('.', '')].trim() } }, function (err, tableUpdated) {
@@ -98,7 +99,7 @@ router.post('/pricing', function (req, res) {
             async.eachSeries(identifiersForUpdate, function (identifier, next) {
 
                 //cells.1.0 - field cell which is array, then second row, first element
-                let concatIdentifier = "cells." + identifier;
+                let concatIdentifier = "cells_ " + languageLiteral +"." + identifier;
                 TableComponent.update(
                     { "slug": "extra_fav" },
                     { "$set": { [concatIdentifier]: req.body["second" + identifier.replace('.', '')].trim() } }, function (err, tableUpdated) {

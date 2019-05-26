@@ -1,7 +1,7 @@
 var TableComponent = require('../models/TableComponent');
 var Page = require('../models/Page');
 
-module.exports = function () {
+module.exports = function (req) {
 
     return new Promise(function (resolve, reject) {
 
@@ -11,6 +11,7 @@ module.exports = function () {
                 reject(err);
             }
 
+            let languageLiteral = req.app.locals.language;
             let resultObj = {};
             let firstTableId = page.components.get('firstTable');
             let secondTableId = page.components.get('secondTable');
@@ -22,8 +23,8 @@ module.exports = function () {
                         reject(err);
                     }
 
-                    resultObj['firstTable'] = table.cells;
-                    resultObj['firstTableTitle'] = 'Първа таблица';
+                    resultObj['firstTable'] = table['cells_' + languageLiteral];
+                    resultObj['firstTableTitle'] = languageLiteral == 'bg' ? 'Първа таблица' : 'First table';
                     resolve();
 
                 });
@@ -36,7 +37,7 @@ module.exports = function () {
                         reject(err);
                     }
 
-                    resultObj['secondTable'] = table.cells;
+                    resultObj['secondTable'] = table['cells_' + languageLiteral];
                     resultObj['secondTableTitle'] = ' Втора таблица';
                     resolve();
 

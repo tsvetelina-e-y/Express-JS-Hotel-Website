@@ -1,24 +1,45 @@
 var mongoose = require('mongoose');
 
 var paragraphComponentSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: false
-    },
-    subTitle: {
-        type: String,
-        required:false
-    },
-
-    smallTitle: {
+    title_bg: {
         type: String,
         required: false
     },
     
-    text: {
+    title_en: {
         type: String,
         required: false
     },
+
+    subTitle_bg: {
+        type: String,
+        required: false
+    },
+    subTitle_en: {
+        type: String,
+        required: false
+    },
+
+    smallTitle_bg: {
+        type: String,
+        required: false
+    },
+
+    smallTitle_en: {
+        type: String,
+        required: false
+    },
+
+    text_bg: {
+        type: String,
+        required: false
+    },
+
+    text_en: {
+        type: String,
+        required: false
+    },
+
     slug: {
         type: String,
         required: false

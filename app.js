@@ -3,7 +3,7 @@ var path = require('path');
 var fileUpload = require('express-fileupload');
 
 var bodyParser = require('body-parser');
-
+var router = express.Router();
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/hotel', { useNewUrlParser: true });
 var AmenitiesComponent = require('./models/AmenitiesComponent');
@@ -29,11 +29,14 @@ app.use(fileUpload());
 
 //Get all amenities to pass to header.ejs
 
-AmenitiesComponent.findOne({slug: 'amenities'}, function (err, resultObj) {
+AmenitiesComponent.findOne({ slug: 'amenities' }, function (err, resultObj) {
     if (err) {
         console.log(err);
     } else {
-        app.locals.amenities = resultObj.amenities;
+
+        app.locals.language = 'bg';
+        app.locals.amenities = resultObj['amenities_' + app.locals.language];
+
     }
 });
 
@@ -52,9 +55,26 @@ app.use(bodyParser.json());
 //Start the server
 
 var port = 3000;
-app.listen(port, function() {
+app.listen(port, function () {
     console.log('Server started on port ' + port);
 });
+
+app.use('/', router.get('/language', function (req, res) {
+    req.app.locals.language = req.app.locals.language == 'bg' ? 'en' : 'bg';
+
+    //todo this is written .. twixe
+    AmenitiesComponent.findOne({ slug: 'amenities' }, function (err, resultObj) {
+        if (err) {
+            console.log(err);
+        } else {
+    
+            req.app.locals.amenities = resultObj['amenities_' + req.app.locals.language];
+            res.redirect('back');
+        }
+    });
+
+    
+}));
 
 
 //set routes

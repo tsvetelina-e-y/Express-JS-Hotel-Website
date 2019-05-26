@@ -12,7 +12,7 @@ router.get('/landing-page', function (req, res) {
 
     let getLandingPageInfo = require('../db/get_landing_page_info');
 
-    getLandingPageInfo().then(function (resultObj) {
+    getLandingPageInfo(req).then(function (resultObj) {
 
         res.render('admin/admin_land_page', resultObj);
     });
@@ -22,7 +22,7 @@ router.get('/landing-page', function (req, res) {
 //post landing page for edit
 router.post('/landing-page', function (req, res) {
 
-    console.log('===========' + req.body.amenities);
+    
     let compTitle = req.body.compTitle;
     let compSubTitle = req.body.compSubTitle;
 
@@ -37,6 +37,8 @@ router.post('/landing-page', function (req, res) {
             reject(err);
         }
 
+        let languageLiteral = req.app.locals.language;
+
         let titleId = page.components.get('headingTitle');
         let paragraphId = page.components.get('aboutUsParagraph');
         let amenitiesId = page.components.get('amenities');
@@ -46,8 +48,8 @@ router.post('/landing-page', function (req, res) {
 
                 if (err) console.log(err);
 
-                resultTitle.title = compTitle;
-                resultTitle.subTitle = compSubTitle;
+                resultTitle['title_' + languageLiteral] = compTitle;
+                resultTitle['subTitle_' + languageLiteral] = compSubTitle;
 
                 resultTitle.save(function (err) {
                     if (err) {
@@ -65,9 +67,9 @@ router.post('/landing-page', function (req, res) {
 
                 if (err) console.log(err);
 
-                resultParagraph.title = paraTitle1;
-                resultParagraph.subTitle = paraTitle2;
-                resultParagraph.text = paragraph;
+                resultParagraph['title_' + languageLiteral] = paraTitle1;
+                resultParagraph['subTitle_' + languageLiteral] = paraTitle2;
+                resultParagraph['text_' + languageLiteral] = paragraph;
 
                 resultParagraph.save(function (err) {
                     if (err) {
@@ -91,7 +93,7 @@ router.post('/landing-page', function (req, res) {
                         return el != '';
                     });
 
-                    resultAmenities.amenities = newArrAmenities;
+                    resultAmenities['amenities_' + languageLiteral] = newArrAmenities;
                     resultAmenities.save();
                     req.app.locals.amenities = newArrAmenities;
                     resolve();

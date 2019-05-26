@@ -4,13 +4,18 @@ var TitleComponent = require('./TitleComponent');
 
 var pageSchema = mongoose.Schema({
 
-    title: {
+    title_bg: {
 
         type: String,
         required: false
 
     },
+    title_en: {
 
+        type: String,
+        required: false
+
+    },
     slug: {
         type: String,
         required: false

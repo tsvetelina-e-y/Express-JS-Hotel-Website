@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
 
 var amenitiesComponentSchema = mongoose.Schema({
-    amenities: {
+    amenities_bg: {
+        type: [String],
+        required: false
+    },
+    amenities_en: {
         type: [String],
         required: false
     },

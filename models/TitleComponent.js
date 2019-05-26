@@ -4,25 +4,27 @@ var mongoose = require('mongoose');
 
 var titleComponentSchema = mongoose.Schema({
 
-    title: {
+    title_bg: {
 
         type: String,
         required: false
 
     },
-    subTitle: {
+    title_en: {
+
+        type: String,
+        required: false
+
+    },
+    subTitle_bg: {
+        type: String,
+        required: false
+    },
+    subTitle_en: {
         type: String,
         required: false
     },
     slug: {
-        type: String,
-        required: false
-    },
-    titleEN: {
-        type: String,
-        required: false
-    },
-    subTitleEN: {
         type: String,
         required: false
     }

@@ -21,10 +21,12 @@
                         <i class="fab fa-facebook"></i>
                     </a>
                 </div>
-                <div class="toggle ">
-                    <span>EN</span>
-                    <input type="checkbox">
-                    <span>BG</span>
+
+                <% let isLanguageSwitched = language == 'en' ? 'switched' : '' %>
+                <div class="toggle language <%= isLanguageSwitched %>">
+                    <a href="/language" class="en"> <span >BG</span></a>
+                    <a href="/language" class="bg"> <span>EN</span></a>
+                
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@ var ParagraphComponent = require('../models/ParagraphComponent');
 //get public spa
 router.get('/spa', function (req, res) {
 
-    getSpaPageInfo().then(function (resultObj) {
+    getSpaPageInfo(req).then(function (resultObj) {
         res.render('admin/admin_spa', resultObj);
     });
 
@@ -20,6 +20,8 @@ router.get('/spa', function (req, res) {
 router.post('/spa', function (req, res) {
 
     let newInfo = req.body.content;
+
+    let languageLiteral = req.app.locals.language;
 
     Page.findOne({ slug: 'spa' }, function (err, page) {
         if (err) {
@@ -33,7 +35,7 @@ router.post('/spa', function (req, res) {
                     console.log(err);
                 }
 
-                resultParagraph.text = newInfo;
+                resultParagraph['text_' + languageLiteral] = newInfo;
                 resultParagraph.save();
                 res.redirect('/admin/spa');
 

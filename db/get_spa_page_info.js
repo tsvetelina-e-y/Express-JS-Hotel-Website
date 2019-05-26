@@ -1,7 +1,7 @@
 var ParagraphComponent = require('../models/ParagraphComponent');
 var Page = require('../models/Page');
 
-module.exports = function () {
+module.exports = function (req) {
 
     return new Promise(function (resolve, reject) {
 
@@ -11,6 +11,7 @@ module.exports = function () {
                 reject(err);
             }
 
+            let languageLiteral = req.app.locals.language;
             let paragraphId = page.components.get('contentParagraph');
             let resultObj = {};
 
@@ -22,8 +23,10 @@ module.exports = function () {
                         reject(err);
                     }
 
-                    resultObj['title'] = resultParagraph.title;
-                    resultObj['content'] = resultParagraph.text;
+                    resultObj['title'] = resultParagraph['title_' + languageLiteral];
+                    resultObj['content'] = resultParagraph['text_'+ languageLiteral];
+
+                    console.log('===========================' +JSON.stringify(resultObj));
 
                     resolve();
 

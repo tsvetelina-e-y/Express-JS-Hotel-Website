@@ -9,7 +9,7 @@ router.get('/about-us', function (req, res) {
 
     let getAboutUsPageInfo = require('../db/get_about_us_info');
 
-    getAboutUsPageInfo().then(function (resultObj) {
+    getAboutUsPageInfo(req).then(function (resultObj) {
         res.render('admin/admin_about_us', resultObj);
     });
 
@@ -27,14 +27,14 @@ router.post('/about-us', function (req, res) {
             let findParapgraphAndSavePromise = new Promise(function (resolve, reject) {
                 ParagraphComponent.findById(textId, function (err, resultParagraph) {
 
-                    console.log('------------' + resultParagraph);
+                    let langugageLiteral = req.app.locals.language;
                     if (err) {
                         reject(err);
                     } else {
 
-                        resultParagraph['title'] = req.body.title;
-                        resultParagraph['subTitle'] = req.body.subTitle;
-                        resultParagraph['text'] = req.body.text;
+                        resultParagraph['title_' + langugageLiteral] = req.body.title;
+                        resultParagraph['subTitle_' + langugageLiteral] = req.body.subTitle;
+                        resultParagraph['text_' + langugageLiteral] = req.body.text;
 
                         resultParagraph.save();
                         resolve();

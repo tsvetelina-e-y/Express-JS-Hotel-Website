@@ -5,7 +5,7 @@ var fs = require('fs-extra');
 var ParagraphComponent = require('../models/ParagraphComponent');
 var Page = require('../models/Page');
 
-module.exports = function () {
+module.exports = function (req) {
 
     return new Promise(function (resolve, reject) {
 
@@ -25,9 +25,10 @@ module.exports = function () {
                             reject(err);
                         } else {
 
-                            resultObj['title'] = resultParagraph.title;
-                            resultObj['subTitle'] = resultParagraph.subTitle;
-                            resultObj['text'] = resultParagraph.text;
+                            let languageLiteral = req.app.locals.language == 'bg' ? 'bg' : 'en';
+                            resultObj['title'] = resultParagraph['title_' + languageLiteral];
+                            resultObj['subTitle'] = resultParagraph['subTitle_' + languageLiteral];
+                            resultObj['text'] = resultParagraph['text_' + languageLiteral];
                             resolve();
                         }
 
@@ -35,7 +36,7 @@ module.exports = function () {
 
                 });
 
-            
+
                 Promise.all([findParapgraphPromise]).then(function () {
                     resolve(resultObj);
                 });

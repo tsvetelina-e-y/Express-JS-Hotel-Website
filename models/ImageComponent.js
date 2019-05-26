@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var imageComponentSchema = mongoose.Schema({
-    name: {
+    url: {
         type: String,
         required: false
     },

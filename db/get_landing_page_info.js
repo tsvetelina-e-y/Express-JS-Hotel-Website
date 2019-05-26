@@ -10,7 +10,7 @@ var AmenitiesComponent = require('../models/AmenitiesComponent');
 var Page = require('../models/Page');
 
 
-module.exports = function () {
+module.exports = function (req) {
 
     return new Promise(function (resolve, reject) {
 
@@ -21,19 +21,22 @@ module.exports = function () {
             } else {
 
                 let resultObj = {};
+               
+                let languageLiteral = req.app.locals.language == 'bg' ? 'bg' : 'en';
                 let titleId = page.components.get('headingTitle');
                 let paragraphId = page.components.get('aboutUsParagraph');
                 let headerBgImgId = page.components.get('headerBgImage');
                 let locationId = page.components.get('location');
                 let amenitiesId = page.components.get('amenities');
 
+
                 let findTitlePromise = new Promise(function (resolve, reject) {
                     TitleComponent.findById(titleId, function (err, resultTitle) {
                         if (err) {
                             reject(err);
                         } else {
-                            resultObj['compTitle'] = resultTitle.title;
-                            resultObj['compSubTitle'] = resultTitle.subTitle;
+                            resultObj['compTitle'] = resultTitle['title_' + languageLiteral];
+                            resultObj['compSubTitle'] = resultTitle['subTitle_' + languageLiteral];
 
                             resolve();
                         }
@@ -49,7 +52,7 @@ module.exports = function () {
                             reject(err);
                         } else {
 
-                            resultObj['address'] = resultLocation.address;
+                            resultObj['address'] = resultLocation['address_' + languageLiteral];
                             resultObj['phone'] = resultLocation.phone;
                             resultObj['email'] = resultLocation.email;
 
@@ -68,9 +71,9 @@ module.exports = function () {
                             reject(err);
                         } else {
 
-                            resultObj['paragraphTitle'] = resultParagraph.title;
-                            resultObj['paragraphSubTitle'] = resultParagraph.subTitle;
-                            resultObj['paragraphText'] = resultParagraph.text;
+                            resultObj['paragraphTitle'] = resultParagraph['title_' + languageLiteral];
+                            resultObj['paragraphSubTitle'] = resultParagraph['subTitle_' + languageLiteral];
+                            resultObj['paragraphText'] = resultParagraph['text_' + languageLiteral];
 
                             console.log(resultParagraph);
                             resolve();
@@ -89,11 +92,11 @@ module.exports = function () {
                         }
                         var galleryDir = 'public/images/';
                         //checking if image exists
-                        fs.readFile(galleryDir + image.name, function (err, files) {
+                        fs.readFile(galleryDir + image.url, function (err, files) {
                             if (err) {
                                 reject(err);
                             } else {
-                                resultObj['headerBgImg'] = image.name;
+                                resultObj['headerBgImg'] = image.url;
                                 resolve();
                             }
                         });
@@ -101,20 +104,20 @@ module.exports = function () {
 
                 });
 
-                let findAmenities = new Promise(function (resolve, reject) {
-                    AmenitiesComponent.findById(amenitiesId, function (err, result) {
-                        if (err) {
-                            reject(err);
-                        } else {
+                // let findAmenities = new Promise(function (resolve, reject) {
+                //     AmenitiesComponent.findById(amenitiesId, function (err, result) {
+                //         if (err) {
+                //             reject(err);
+                //         } else {
 
-                            resultObj['amenities'] = result.amenities;
-                            resolve();
-                        }
-                    });
-                });
+                //             resultObj['amenities'] = result.amenities;
+                //             resolve();
+                //         }
+                //     });
+                // });
 
                 Promise.all([findTitlePromise, findLocationPromise
-                    , findParapgraphPromise, findHeaderImage, findAmenities]).then(function () {
+                    , findParapgraphPromise, findHeaderImage]).then(function () {
                         resolve(resultObj);
                     });
 
