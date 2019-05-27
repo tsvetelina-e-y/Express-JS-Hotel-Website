@@ -1,0 +1,92 @@
+<% include ./_layouts/header %>
+<div class="top-title p-4">
+    <div class="container-fluid">
+        <h1>
+            <i class="fas fa-arrow-right"></i>Контакти</h1>
+    </div>
+</div>
+<div class="contact">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-5 col-lg-5 map">
+
+                <div class="map-container">
+                    <div id="map" >
+
+                    </div>
+                </div>
+               
+                <div class="info">
+                    <div class="location">
+                        <h3>Нашит адрес</h3>
+                        <p>гр. Павликени, ул "Гоце Делчев" 7</p>
+                    </div>
+                    <div class="location">
+                        <h3>Телефон</h3>
+                        <p>тел./факс:0610/78 535</p>
+                        <p>GSM:05489 453 600</p>
+                    </div>
+                    <div class="location">
+                        <h3>email</h3>
+                        <p>example@info.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-lg-7 contact-form-container p-4">
+                <form class="contact-form" method="POST" action="/admin/message">
+                    <div>
+                        <h1>Свържете се с нас</h1>
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="name">Име</label> -->
+                        <input type="text" class="" id="name" aria-describedby="name" placeholder="Име" name="firstName">
+
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="fathername">Фамилия</label> -->
+                        <input type="text" class="" id="fathername" placeholder="Фамилия" name="lastName">
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="phone">Телефон</label> -->
+                        <input type="text" class="" id="phone" placeholder="Телефон" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <!-- <label for="email">email</label> -->
+                        <input type="text" class="" id="email" placeholder="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="message">Относно</label> -->
+                        <textarea type="text"  id="message" placeholder="Относно ..." rows="8" name="message"></textarea>
+                    </div>
+                    <!-- <button type="submit" class="clear button-green">Изчисти</button> -->
+                    <button type="submit" class="send button-green">Изпрати</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ./_layouts/footer %>
+
+<script>
+    function initMap() {
+        var uluru = { lat: 43.238733, lng: 25.306592 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 9,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script src="../js/jquery-2.1.4.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYOHcAsnPec4zWNYnFFH5hKsUIag0lkAw&callback=initMap"
+    type="text/javascript"></script>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYOHcAsnPec4zWNYnFFH5hKsUIag0lkAw&callback=initMap"
+    type="text/javascript"></script>

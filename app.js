@@ -82,6 +82,7 @@ app.use('/', router.get('/language', function (req, res) {
 var pagesR = require('./routes/pagesR');
 var adminSpa = require('./routes/admin_spa');
 var adminLangindPagge = require('./routes/admin_landing_page');
+var adminSendMessage = require('./routes/admin_contact');
 var adminAboutUs = require('./routes/admin_about_us');
 var adminPricing = require('./routes/admin_pricing');
 var adminOffert = require('./routes/admin_offert');
@@ -95,3 +96,4 @@ app.use('/admin', adminSpa);
 app.use('/admin', adminPricing);
 app.use('/admin', adminOffert);
 app.use('/admin', adminImages);
+app.use('/admin', adminSendMessage);

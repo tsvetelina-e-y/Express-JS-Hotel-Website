@@ -614,58 +614,59 @@ tr td:nth-child(1) {
 
 /********************************* CONTACT */
 
+.button-green {
+
+  border: 3px solid #7eac42;
+  padding: 5px 9px;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #39612a;
+}
+
 .contact {
-  background: url("../img/123456.jpg") no-repeat center center;
+  background: url("../images/123456.jpg") no-repeat center center;
   background-position: top right;
 }
 
-.contact .col-md-5 {
-  position: relative;
-}
-
-.contact .col-md-5 #map {
+.contact #map {
+  height: 100%;
+  width: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -15;
 }
 
-.contact .container .row .col-md-5 .info {
+.contact .info {
   position: absolute;
-  z-index: 1000 !important;
-  height: auto;
-  width: 80%;
-  margin: 0 auto;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 15px 10px;
+  bottom : 5px;
+  left: 20px;
+  width: 60%;
 }
 
-.contact .container .row .info section {
+.contact .info .location {
   background: white;
   padding: 10px;
-  margin-bottom: 5px;
   box-shadow: 0px 1px 1px rgba(1, 1, 1, 0.3);
   border-radius: 2px;
   border-left: 6px solid #f7b733;
   padding-left: 20px;
+  margin-bottom: 3px;
+
 }
 
 .contact .info section h3 {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   color: #7eac42;
 }
-.contact .container .row .col-md-5 .info section p {
+.contact .info section p {
   font-size: 0.8rem;
   margin-bottom: 4px;
   color: #eea91e;
 }
 
 .contact-form-container {
-  background: rgba(255, 255, 255, .7) !important;
+  background: rgba(255, 255, 255, .9) !important;
   box-shadow: 10px 10px 10px rgba(1, 1, 1, .2);
 }
 

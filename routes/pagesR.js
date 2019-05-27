@@ -44,7 +44,14 @@ router.get('/spa', function (req, res) {
 
 });
 
+router.get('/contact', function (req, res) {
 
+  
+ 
+    res.render('contact');
+ 
+
+});
 
 //get public spa
 router.get('/offerts/:slug', function (req, res) {
