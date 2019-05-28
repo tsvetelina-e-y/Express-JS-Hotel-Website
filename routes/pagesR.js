@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require('fs-extra');
 
 var router = express.Router();
 
@@ -46,10 +47,24 @@ router.get('/spa', function (req, res) {
 
 router.get('/contact', function (req, res) {
 
-  
- 
-    res.render('contact');
- 
+
+
+  res.render('contact');
+
+
+});
+
+router.get('/gallery', function (req, res) {
+
+  fs.readdir('public/images/gallery', function (err, images) {
+    if (err) {
+      reject(err);
+    } else {
+
+      res.render('gallery', {images: images});
+
+    }
+  });
 
 });
 

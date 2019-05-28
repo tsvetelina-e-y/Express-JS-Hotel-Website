@@ -2,6 +2,12 @@ var express = require('express');
 var fs = require('fs-extra');
 var router = express.Router();
 
+router.get('/gallery', function (req, res) {
+
+   res.render('admin/admin_gallery');
+
+});
+
 //tuka kato e get shte se polzwa ajax za da se rendyrnat
 router.get('/images', function (req, res) {
 
@@ -17,7 +23,6 @@ router.get('/images', function (req, res) {
 });
 
 router.post('/add-image', function (req, res) {
-
 
     console.log(req.files);
     let imageFile = typeof req.files.image !== 'undefined' ? req.files.image.name : "";
@@ -38,7 +43,6 @@ router.post('/add-image', function (req, res) {
 
         }
     });
-
 
 });
 
