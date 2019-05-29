@@ -5,17 +5,17 @@ var ParagraphComponent = require('../models/ParagraphComponent');
 var ImageComponent = require('../models/ImageComponent');
 var fs = require('fs-extra');
 
-module.exports = function (pageSlug) {
-
+module.exports = function (req) {
 
     return new Promise(function (resolve, reject) {
 
-        PageComponent.findOne({ slug: pageSlug }, function (err, page) {
+        PageComponent.findOne({ slug: req.params.slug }, function (err, page) {
 
+           
+            let languageLiteral = req.app.locals.language;
 
             if (err) reject(err);
 
-console.log('----------------' + page);
             let titleId = page.components.get("title");
             let textId = page.components.get("text");
             let tableId = page.components.get("firstTable");
@@ -30,8 +30,8 @@ console.log('----------------' + page);
                         reject(err);
                     }
 
-                    resultObj['title'] = resultTitle.title;
-                    resultObj['subTitle'] = resultTitle.subTitle;
+                    resultObj['title'] = resultTitle['title_' + languageLiteral];
+                    resultObj['subTitle'] = resultTitle['subTitle_' + languageLiteral];
                     resolve();
 
                 });
@@ -44,7 +44,7 @@ console.log('----------------' + page);
                         reject(err);
                     }
 
-                    resultObj['text'] = resultParagraph.text;
+                    resultObj['text'] = resultParagraph['text_' + languageLiteral];
                     resolve();
 
                 });
@@ -57,29 +57,30 @@ console.log('----------------' + page);
                         reject(err);
                     }
 
-                    resultObj['firstTable'] = resultTable.cells;
+                    resultObj['firstTable'] = resultTable['cells_' + languageLiteral];
                     resolve();
 
                 });
             });
-
+ 
             let findImagePromise = new Promise(function (resolve, reject) {
                 ImageComponent.findById(imgId, function (err, resultImage) {
-                    console.log(resultImage);
+                 
                     if (err) {
                         console.log(err);
                     }
                     var galleryDir = 'public/images/';
                     //checking if image exists
-                    console.log(galleryDir + resultImage['name']);
-                    fs.readFile(galleryDir + resultImage.name, function (err, files) {
-                        console.log(galleryDir + resultImage.name);
+                   
+                    fs.readFile(galleryDir + resultImage.url, function (err, files) {
+                        
                         if (err) {
                             reject(err);
                         } else {
-                            resultObj['image'] = resultImage.name || 'no-img';
+                            resultObj['image'] = resultImage.url || 'no-img';
                             resolve();
                         }
+
                     });
                 });
             }).catch(function(err) {

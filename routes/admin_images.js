@@ -4,7 +4,13 @@ var router = express.Router();
 
 router.get('/gallery', function (req, res) {
 
-   res.render('admin/admin_gallery');
+    fs.readdir('public/images/gallery/', function (err, files) {
+        if (err) {
+            reject(err);
+        } else {
+            res.render('admin/admin_gallery', { images: files });
+        }
+    });
 
 });
 
@@ -22,18 +28,36 @@ router.get('/images', function (req, res) {
 
 });
 
+//get delete image
+
+router.get('/delete-image/:image', function (req, res) {
+
+    var originalImage = 'public/images/gallery/' + req.params.image;
+
+    fs.remove(originalImage, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+
+            // req.flash('success', 'Картината е променена!');
+            res.redirect('back');
+        }
+
+    });
+
+});
+
 router.post('/add-image', function (req, res) {
 
-    console.log(req.files);
     let imageFile = typeof req.files.image !== 'undefined' ? req.files.image.name : "";
 
-    fs.readdir('public/images/', function (err, files) {
+    fs.readdir('public/images/gallery/', function (err, files) {
         if (err) {
-            reject(err);
+            console.log(err)
         } else {
 
             let productImage = req.files.image;
-            let path = 'public/images/' + req.files.image.name;
+            let path = 'public/images/gallery/' + req.files.image.name;
 
             productImage.mv(path, function (err) {
                 return console.log(err);

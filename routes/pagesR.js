@@ -27,12 +27,10 @@ router.get('/base', function (req, res) {
 //get public pricing
 router.get('/pricing', function (req, res) {
 
-
   var getInfoObj = require('../db/get_pricing_page_info');
   getInfoObj(req).then(function (resultObj) {
     res.render('pricing', resultObj);
   });
-
 
 });
 
@@ -47,10 +45,7 @@ router.get('/spa', function (req, res) {
 
 router.get('/contact', function (req, res) {
 
-
-
   res.render('contact');
-
 
 });
 
@@ -61,7 +56,7 @@ router.get('/gallery', function (req, res) {
       reject(err);
     } else {
 
-      res.render('gallery', {images: images});
+      res.render('gallery', { images: images });
 
     }
   });
@@ -71,14 +66,17 @@ router.get('/gallery', function (req, res) {
 //get public spa
 router.get('/offerts/:slug', function (req, res) {
 
-
   let getOffertPageInfo = require('../db/get_offert_page_info');
 
-  getOffertPageInfo(req.params.slug).then(function (resultObj) {
+  getOffertPageInfo(req, req.params.slug).then(function (resultObj) {
     res.render('offert', resultObj);
   });
 
 });
+
+// router.get('*', function(req, res) {
+//   res.send('err');
+// });
 
 
 module.exports = router;

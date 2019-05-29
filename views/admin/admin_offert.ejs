@@ -135,7 +135,11 @@
 
 <% include ../_layouts/admin_footer %>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
 
+<script>
+    CKEDITOR.replace( 'content' );
+</script>
 <script>
 
     $("#form").submit(function (e) {

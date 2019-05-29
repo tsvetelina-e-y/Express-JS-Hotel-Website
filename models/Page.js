@@ -20,7 +20,10 @@ var pageSchema = mongoose.Schema({
         type: String,
         required: false
     },
-
+    type: {
+        type: String,
+        required: false
+    },
     components: {
         type: Map,
         required:false

@@ -14,7 +14,7 @@ router.get('/offerts/:slug', function (req, res) {
 
     let getOffertPageInfo = require('../db/get_offert_page_info');
 
-    getOffertPageInfo(req.params.slug).then(function (resultObj) {
+    getOffertPageInfo(req).then(function (resultObj) {
         res.render('admin/admin_offert', resultObj);
     });
 
@@ -24,6 +24,8 @@ router.post('/offerts/:slug', function (req, res) {
 
     Page.findOne({ slug: req.params.slug }, function (err, page) {
 
+
+        let languageLiteral = req.app.locals.language;
         //todo open robomongo and set the component name
         let titleId = page.components.get('title');
         let tableId = page.components.get('firstTable');
@@ -38,8 +40,8 @@ router.post('/offerts/:slug', function (req, res) {
                     reject(err);
                 }
 
-                resultTitle.title = req.body.title;
-                resultTitle.subTitle = req.body.title;
+                resultTitle['title_' + languageLiteral] = req.body.title;
+                resultTitle['subTitle_' + languageLiteral] = req.body.subTitle;
 
                 resultTitle.save();
                 resolve();
@@ -59,8 +61,8 @@ router.post('/offerts/:slug', function (req, res) {
                     reject(err);
                 }
 
-                let rows = resultTable.cells.length;
-                let cols = resultTable.cells[0].length;
+                let rows = resultTable['cells_' + languageLiteral].length;
+                let cols = resultTable['cells_' + languageLiteral][0].length;
 
                 let identifiersForUpdate = [];
 
@@ -69,7 +71,7 @@ router.post('/offerts/:slug', function (req, res) {
                 for (let i = 0; i < rows; i++) {
                     for (let j = 0; j < cols; j++) {
 
-                        if (resultTable.cells[i][j].trim() !== req.body[i + "" + j].toString().trim()) {
+                        if (resultTable['cells_' + languageLiteral][i][j].trim() !== req.body[i + "" + j].toString().trim()) {
 
                             identifiersForUpdate.push(i + '.' + j);
 
@@ -78,9 +80,10 @@ router.post('/offerts/:slug', function (req, res) {
                 }
 
                 async.eachSeries(identifiersForUpdate, function (identifier, next) {
-
+                    
+                    let languageLiteral = req.app.locals.language;
                     //cells.1.0 - field cell which is array, then second row, first element
-                    let concatIdentifier = "cells." + identifier;
+                    let concatIdentifier = "cells_" + languageLiteral + '.' + identifier;
                     TableComponent.update(
                         { "slug": "easter_offert" },
                         { "$set": { [concatIdentifier]: req.body[identifier.replace('.', '')].trim() } }, function (err, tableUpdated) {
@@ -102,12 +105,13 @@ router.post('/offerts/:slug', function (req, res) {
 
         let findTextAndSavePromise = new Promise(function (resolve, reject) {
 
+            console.log('====================' + textId );
             ParagraphComponent.findById(textId, function (err, resultText) {
                 if (err) {
                     console.log(err);
                 }
 
-                resultText.text = req.body.content;
+                resultText['text_' + languageLiteral]= req.body.content;
                 resultText.save();
                 resolve();
 

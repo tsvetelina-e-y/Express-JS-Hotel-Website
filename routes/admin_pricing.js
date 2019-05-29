@@ -46,7 +46,7 @@ router.post('/pricing', function (req, res) {
             for (let i = 1; i < rows; i++) {
                 for (let j = 0; j < cols; j++) {
 
-                    if (table.cells[i][j].trim() !== req.body["first" + "" + i + "" + j].toString().trim()) {
+                    if (table["cells_" + languageLiteral][i][j].trim() !== req.body["first" + "" + i + "" + j].toString().trim()) {
 
                         identifiersForUpdate.push(i + '.' + j);
 
@@ -87,8 +87,8 @@ router.post('/pricing', function (req, res) {
             //get just indexes for values that were changed
             for (let i = 1; i < rows; i++) {
                 for (let j = 0; j < cols; j++) {
-
-                    if (table.cells[i][j].trim() !== req.body["second" + "" + i + "" + j].toString().trim()) {
+                    console.log('===============================' + table["cells_" + languageLiteral][i][j]);
+                    if (table["cells_" + languageLiteral][i][j].trim() !== req.body["second" + "" + i + "" + j].toString().trim()) {
 
                         identifiersForUpdate.push(i + '.' + j);
 

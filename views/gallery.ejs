@@ -2,18 +2,20 @@
 
 <div class="gallery">
 
-        
-    <div class="container">
-            <h1 class="gallery-title">
-                    Галерия</h1>
-            <div class="row">
 
-                    <% images.forEach(function(image) { %>
-                    <div class="col-md-4 image-col">
-                        <a href="./images/gallery/<%= image %>" class="image"><img src="./images/gallery/<%= image %>" alt=""></a>
-                    </div>
-                    <% }); %>
-                </div>
+    <div class="container">
+        <% let title = language == 'bg' ? 'Галерия' : 'Gallery' %>
+        <h1 class="gallery-title">
+            <%= title %>
+        </h1>
+        <div class="row">
+
+            <% images.forEach(function(image) { %>
+            <div class="col-md-4 image-col">
+                <a href="./images/gallery/<%= image %>" class="image"><img src="./images/gallery/<%= image %>" alt=""></a>
+            </div>
+            <% }); %>
+        </div>
     </div>
 
 </div>
