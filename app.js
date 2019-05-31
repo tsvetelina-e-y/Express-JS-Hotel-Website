@@ -7,6 +7,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/hotel', { useNewUrlParser: true });
 var AmenitiesComponent = require('./models/AmenitiesComponent');
+var LocationComponent = require('./models/LocationComponent');
 
 //Init app
 var app = express();
@@ -37,6 +38,15 @@ AmenitiesComponent.findOne({ slug: 'amenities' }, function (err, resultObj) {
         app.locals.language = 'bg';
         app.locals.amenities = resultObj['amenities_' + app.locals.language];
 
+    }
+});
+
+
+LocationComponent.findOne({ slug: 'location' }, function (err, resultObj) {
+    if (err) {
+        console.log(err);
+    } else {
+        app.locals.location = resultObj;
     }
 });
 
@@ -83,6 +93,7 @@ var pagesR = require('./routes/pagesR');
 var adminSpa = require('./routes/admin_spa');
 var adminLangindPagge = require('./routes/admin_landing_page');
 var adminSendMessage = require('./routes/admin_contact');
+var adminLocation = require('./routes/admin_location');
 var adminAboutUs = require('./routes/admin_about_us');
 var adminPricing = require('./routes/admin_pricing');
 var adminOffert = require('./routes/admin_offert');
@@ -97,3 +108,4 @@ app.use('/admin', adminPricing);
 app.use('/admin', adminOffert);
 app.use('/admin', adminImages);
 app.use('/admin', adminSendMessage);
+app.use('/admin', adminLocation);
