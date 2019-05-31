@@ -106,7 +106,7 @@ router.post('/landing-page', function (req, res) {
             , findAndSaveParapgraphPromise, findAndSaveAmenities]).then(function () {
                 res.redirect('/admin/landing-page');
             });
-
+            
     });
 
 });

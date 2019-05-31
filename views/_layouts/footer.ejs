@@ -2,44 +2,44 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-lg-4">
-                <h4>Нашият адрес</h4>
-                <p>гр. Павликени, ул "Гоце Делчев" 7</p>
+                <h4><%- language =='bg' ? 'Нашият адрес' : 'Address' %></h4>
+                <p><%= location['address_' + language] %></p>
 
                 <div class="number">
-                    <h4>Телефонче</h4>
-                    <p>тел./факс:0610/55 535</p>
-                    <p>GSM:0889 281 600</p>
+                    <h4><%- language =='bg' ? 'Телефонче' : 'Phone' %></h4>
+                  
+                    <p><%= location.phone %></p>
                 </div>
                 <h4>Email</h4>
                 <p>
-                    <a href="mailto:info@example.com">info@example.com</a>
+                    <a href="mailto:info@example.com"><%= location.email %></a>
                 </p>
                 <div class="clearfix"></div>
             </div>
             <div class="col-md-4 col-lg-4">
-                <h4>Карта на сайта</h4>
+                <h4><%- language =='bg' ? 'Карта на сайта' : 'Map' %></h4>
 
                 <ul>
                     <li class="underline-footer">
-                        <a href="">Начало</a>
+                        <a href="/"><%- language =='bg' ? 'начало' : 'start' %></a>
                     </li>
                     <li class="underline-footer">
-                        <a href="">За нас</a>
+                        <a href="/base"><%- language =='bg' ? 'за нас' : 'about us' %></a>
                     </li>
                     <li class="underline-footer">
-                        <a href="">Контакти</a>
+                        <a  href="/gallery"><%- language =='bg' ? 'галерия' : 'gallery' %></a>
                     </li>
                     <li class="underline-footer">
-                        <a href="">Галерия</a>
+                        <a href="/pricing"><%- language =='bg' ? 'цени' : 'pricing' %></a>
                     </li>
                     <li class="underline-footer">
-                        <a href="">Спа и балнеология</a>
+                        <a href="/spa"><%- language =='bg' ? 'спа и балнеология' : 'spa' %></a>
                     </li>
 
                 </ul>
             </div>
             <div class="col-md-4 col-lg-4">
-                <h4>Възки</h4>
+                <h4><%- language =='bg' ? 'Връзки' : 'Links' %></h4>
 
                 <ul>
                     <li>
@@ -64,7 +64,7 @@
     
 
     $('.toggle').click(function(){
-        alert('here');
+       
         $(this).toggleClass('switched');
     });
 

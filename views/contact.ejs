@@ -2,7 +2,7 @@
 <div class="top-title p-4">
     <div class="container-fluid">
         <h1>
-            <i class="fas fa-arrow-right"></i>Контакти</h1>
+            <%- language =='bg' ? 'Контакти' : 'Contact' %></h1>
     </div>
 </div>
 <div class="contact">
@@ -19,37 +19,37 @@
                
                 <div class="info">
                     <div class="location">
-                        <h3>Нашит адрес</h3>
-                        <p>гр. Павликени, ул "Гоце Делчев" 7</p>
+                        <h3><%- language =='bg' ? 'Нашият адрес' : 'Address' %></h3>
+                        <p><%= location['address_' + language] %></p>
                     </div>
                     <div class="location">
-                        <h3>Телефон</h3>
-                        <p>тел./факс:0610/78 535</p>
-                        <p>GSM:05489 453 600</p>
+                        <h3><%- language =='bg' ? 'Телефонче' : 'Phone' %></h3>
+                        <p><%= location.phone %></p>
+                        
                     </div>
                     <div class="location">
                         <h3>email</h3>
-                        <p>example@info.com</p>
+                        <p><%= location.email %></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-7 col-lg-7 contact-form-container p-4">
                 <form class="contact-form" method="POST" action="/admin/message">
                     <div>
-                        <h1>Свържете се с нас</h1>
+                        <h1><%- language =='bg' ? 'Свържете се с нас' : 'Contact Us' %></h1>
                     </div>
                     <div class="form-group">
                         <!-- <label for="name">Име</label> -->
-                        <input type="text" class="" id="name" aria-describedby="name" placeholder="Име" name="firstName">
+                        <input type="text" class="" id="name" aria-describedby="name" placeholder="<%- language =='bg' ? 'Име' : 'Name' %>" name="firstName">
 
                     </div>
                     <div class="form-group">
                         <!-- <label for="fathername">Фамилия</label> -->
-                        <input type="text" class="" id="fathername" placeholder="Фамилия" name="lastName">
+                        <input type="text" class="" id="fathername" placeholder="<%- language =='bg' ? 'Фамилия' : 'Last name' %>" name="lastName">
                     </div>
                     <div class="form-group">
                         <!-- <label for="phone">Телефон</label> -->
-                        <input type="text" class="" id="phone" placeholder="Телефон" name="phone">
+                        <input type="text" class="" id="phone" placeholder="<%- language =='bg' ? 'Телефон' : 'Phone' %>" name="phone">
                     </div>
 
                     <div class="form-group">
@@ -58,10 +58,10 @@
                     </div>
                     <div class="form-group">
                         <!-- <label for="message">Относно</label> -->
-                        <textarea type="text"  id="message" placeholder="Относно ..." rows="8" name="message"></textarea>
+                        <textarea type="text"  id="message" placeholder="<%- language =='bg' ? 'Относно...' : 'About...' %>" rows="8" name="message"></textarea>
                     </div>
                     <!-- <button type="submit" class="clear button-green">Изчисти</button> -->
-                    <button type="submit" class="send button-green">Изпрати</button>
+                    <button type="submit" class="send button-green"><%- language =='bg' ? 'Изпрати' : 'Send' %></button>
                 </form>
             </div>
         </div>

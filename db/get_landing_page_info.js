@@ -104,18 +104,6 @@ module.exports = function (req) {
 
                 });
 
-                // let findAmenities = new Promise(function (resolve, reject) {
-                //     AmenitiesComponent.findById(amenitiesId, function (err, result) {
-                //         if (err) {
-                //             reject(err);
-                //         } else {
-
-                //             resultObj['amenities'] = result.amenities;
-                //             resolve();
-                //         }
-                //     });
-                // });
-
                 Promise.all([findTitlePromise, findLocationPromise
                     , findParapgraphPromise, findHeaderImage]).then(function () {
                         resolve(resultObj);

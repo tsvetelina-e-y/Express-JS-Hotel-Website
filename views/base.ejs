@@ -4,7 +4,7 @@
 <div class="top-title p-4">
     <div class="container-fluid">
         <h1>
-            <i class="fas fa-arrow-right"></i>За нас</h1>
+            <h2><%- language =='bg' ? 'За нас' : 'About us' %></h2></h1>
     </div>
 </div>
 
@@ -13,7 +13,7 @@
         <div class="row">
             <div class="amenities-container col-md-3 col-lg-3 ">
                 <div>
-                    <h2>Комплексът предлага</h2>
+                    <h2><%- language =='bg' ? 'Комплексът предлага' : 'The hotel offers' %>а</h2>
                     <div class="amenities-list">
                         <ul>
 
@@ -59,59 +59,4 @@
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-lg-4">
-                    <h4>Нашият адрес</h4>
-                    <p>гр. Павликени, ул "Гоце Делчев" 7</p>
-
-                    <div class="number">
-                        <h4>Телефонче</h4>
-                        <p>тел./факс:0610/55 535</p>
-                        <p>GSM:0889 281 600</p>
-                    </div>
-                    <h4>Email</h4>
-                    <p>
-                        <a href="mailto:info@example.com">info@example.com</a>
-                    </p>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <h4>Карта на сайта</h4>
-
-                    <ul>
-                        <li class="underline-footer">
-                            <a href="">Начало</a>
-                        </li>
-                        <li class="underline-footer">
-                            <a href="">За нас</a>
-                        </li>
-                        <li class="underline-footer">
-                            <a href="">Контакти</a>
-                        </li>
-                        <li class="underline-footer">
-                            <a href="">Галерия</a>
-                        </li>
-                        <li class="underline-footer">
-                            <a href="">Спа и балнеология</a>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <h4>Възки</h4>
-
-                    <ul>
-                        <li>
-                            <a href="" class="icon-footer"> <i class="fab fa-facebook"></i></a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-    </body>
+    <% include ./_layouts/footer %>
