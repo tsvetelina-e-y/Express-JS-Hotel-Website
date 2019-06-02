@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require('fs-extra');
 
 var router = express.Router();
+let GalleryComponent = require('../models/GalleryComponent');
 
 //get public landing page
 router.get('/', function (req, res) {
@@ -51,14 +52,14 @@ router.get('/contact', function (req, res) {
 
 router.get('/gallery', function (req, res) {
 
-  fs.readdir('public/images/gallery', function (err, images) {
+
+  GalleryComponent.findOne({ slug: 'gallery' }, function (err, gallery) {
     if (err) {
-      reject(err);
-    } else {
-
-      res.render('gallery', { images: images });
-
+      console.log(err);
     }
+
+    res.render('gallery', { images: gallery.images });
+
   });
 
 });

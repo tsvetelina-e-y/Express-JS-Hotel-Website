@@ -57,8 +57,8 @@ router.post('/pricing', function (req, res) {
             async.eachSeries(identifiersForUpdate, function (identifier, next) {
 
                 //cells.1.0 - field cell which is array, then second row, first element
-                let concatIdentifier = "cells_" + languageLiteral  + "." + identifier;
-                
+                let concatIdentifier = "cells_" + languageLiteral + "." + identifier;
+
                 TableComponent.update(
                     { "slug": "price_for_night_breakfast" },
                     { "$set": { [concatIdentifier]: req.body["first" + identifier.replace('.', '')].trim() } }, function (err, tableUpdated) {
@@ -87,7 +87,6 @@ router.post('/pricing', function (req, res) {
             //get just indexes for values that were changed
             for (let i = 1; i < rows; i++) {
                 for (let j = 0; j < cols; j++) {
-                    console.log('===============================' + table["cells_" + languageLiteral][i][j]);
                     if (table["cells_" + languageLiteral][i][j].trim() !== req.body["second" + "" + i + "" + j].toString().trim()) {
 
                         identifiersForUpdate.push(i + '.' + j);
@@ -99,7 +98,8 @@ router.post('/pricing', function (req, res) {
             async.eachSeries(identifiersForUpdate, function (identifier, next) {
 
                 //cells.1.0 - field cell which is array, then second row, first element
-                let concatIdentifier = "cells_ " + languageLiteral +"." + identifier;
+                let concatIdentifier = "cells_" + languageLiteral + "." + identifier;
+
                 TableComponent.update(
                     { "slug": "extra_fav" },
                     { "$set": { [concatIdentifier]: req.body["second" + identifier.replace('.', '')].trim() } }, function (err, tableUpdated) {

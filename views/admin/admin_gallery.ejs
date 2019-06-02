@@ -8,8 +8,8 @@
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            <li class="breadcrumb-item admin-language active"><a href="/language">EN</a></li>
+                            <li class="breadcrumb-item admin-language" aria-current="page"><a href="/language">BG</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -41,11 +41,11 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <div class="el-card-item">
-                        <div class="el-card-avatar el-overlay-1"> <img src="/images/gallery/<%= image %>" alt="user" />
+                        <div class="el-card-avatar el-overlay-1"> <img src="/images/<%= image %>" alt="user" />
                             <div class="el-overlay">
                                 <ul class="list-style-none el-info">
                                     <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link"
-                                            href="/images/gallery/<%= image %>"><i class="mdi mdi-magnify-plus"></i></a></li>
+                                            href="/images/<%= image %>"><i class="mdi mdi-magnify-plus"></i></a></li>
                                     <li class="el-item"><a class="btn default btn-outline el-link" href="/admin/delete-image/<%= image %>"><i
                                                 class="mdi mdi-delete"></i></a></li>
                                 </ul>

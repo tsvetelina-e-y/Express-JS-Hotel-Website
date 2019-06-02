@@ -4,76 +4,37 @@
 
     <div class="offert-bg"></div>
 
-    <!-- <div class="top-title">
-            <div class="container-fluid">
-                <h1>
-                    <i class="fas fa-arrow-right"></i>Контакти</h1>
-            </div>
-        </div> -->
-
     <div class="container-fluid">
 
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="offert-inner">
                     <div class="title">
-                        <h1><%= title %></h1>
+                        <h1>
+                            <%= title %>
+                        </h1>
                         <h4>В ПАРК- ХОТЕЛ „БОРА“ гр. ПАВЛИКЕНИ</h4>
                     </div>
                     <div class="pricing-table">
-                        <div class="offert-text">
-                            <ul>
-                                <li>* Офертата е валидна за периода от 25.04.2019г. до 29.04.2019г.</li>
-                                <li> * Цената е за човек настанен в двойна стая или апартамент при двама
-                                    пълноплащащи</li>
-                            </ul>
 
-
-                        </div>
-                        <table class="table">
+                        <table class="table mb-5">
                             <thead>
-                                <tr>
-                                    <th scope="col" colspan="2">ЦЕНИ НОЩУВКА СЪС ЗАКУСКА</th>
-                                    <!-- <th scope="col">Handle</th> -->
-                                </tr>
+                                <% for(i = 0; i < firstTable.length; i++ ) {%>
+                                <th scope="col" ><%= firstTable[0][i] %></th>
+                                <% } %>
                             </thead>
                             <tbody>
+                                <% for(i = 1; i < firstTable.length; i++ ) {%>
                                 <tr>
-                                    <td class="text-left w-75">Стая с две легла</td>
-                                    <td class="text-right">54.00лв</td>
-                                    <td class="text-right">54.00лв</td>
-                                    <td class="text-right">54.00лв</td>
+                                    <% for(j = 0; j < firstTable[i].length; j++ ) {%>
 
+                                    <% let style = (j % 2 == 0) ? 'text-left w-75': 'text-right' %>
+                                    <td class="<%=  %>">
+                                        <%= firstTable[i][j] %>
+                                    </td>
+                                    <% } %>
                                 </tr>
-                                <tr>
-
-                                    <td class="text-left w-75">Стая, ползвана самостоятелна</td>
-                                    <td class="text-right">40.00</td>
-                                    <td class="text-right">54.00лв</td>
-                                    <td class="text-right">54.00лв</td>
-                                </tr>
-                                <tr>
-
-                                    <td class="text-left w-75">Допълнително легло в стая</td>
-                                    <td class="text-right">15.00лв</td>
-                                    <td class="text-right">54.00лв</td>
-                                    <td class="text-right">54.00лв</td>
-                                </tr>
-                                <tr>
-
-                                    <td class="text-left w-75">Допълнително легло в стая</td>
-                                    <td class="text-right">15.00лв</td>
-                                    <td class="text-right">54.00лв</td>
-                                    <td class="text-right">54.00лв</td>
-                                </tr>
-                                <tr>
-
-                                    <td class="text-left w-75">Допълнително легло в стая</td>
-                                    <td class="text-right">15.00лв</td>
-                                    <td class="text-right">54.00лв</td>
-                                    <td class="text-right">54.00лв</td>
-                                </tr>
-
+                                <% } %>
                             </tbody>
                         </table>
                     </div>

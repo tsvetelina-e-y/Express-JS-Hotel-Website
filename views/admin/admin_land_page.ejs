@@ -11,8 +11,8 @@
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            <li class="breadcrumb-item admin-language active"><a href="/language">EN</a></li>
+                            <li class="breadcrumb-item admin-language" aria-current="page"><a href="/language">BG</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -49,14 +49,14 @@
                                 <label class="col-md-3">Картина фон</label>
                                 <div class="col-md-9">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="validatedCustomFile">
+                                        <input type="file" class="custom-file-input" id="img" name="image">
                                         <label class="custom-file-label" for="validatedCustomFile">Choose
                                             file...</label>
 
                                         <div class="invalid-feedback">Example invalid custom file feedback</div>
                                     </div>
                                     <div class="col-sm-9">
-                                        <img id="noimage" src="/images/<%= headerBgImg %>" alt="" style="width: 200px; margin-top: 10px">
+                                        <img src="/images/<%= headerBgImg %>" alt="" id="imgPreview" style="width: 200px; margin-top: 10px">
                                     </div>
                                 </div>
                             </div>
@@ -194,4 +194,20 @@
         // Let's find the input to check
         updateHiddenInput();
     });
+
+
+     //preview image
+     function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#imgPreview").attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#img").change(function () {
+        readURL(this);
+    })
+
 </script>

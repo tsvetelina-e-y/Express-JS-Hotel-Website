@@ -8,6 +8,18 @@ var ParagraphComponent = require('../models/ParagraphComponent');
 var AmenitiesComponent = require('../models/AmenitiesComponent');
 
 //get landing page for edit
+router.get('/', function (req, res) {
+
+    let getLandingPageInfo = require('../db/get_landing_page_info');
+
+    getLandingPageInfo(req).then(function (resultObj) {
+
+        res.render('admin/admin_land_page', resultObj);
+    });
+
+});
+
+//get landing page for edit
 router.get('/landing-page', function (req, res) {
 
     let getLandingPageInfo = require('../db/get_landing_page_info');

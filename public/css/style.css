@@ -799,11 +799,11 @@ h2.orange-title-text {
 .gallery {
   background:linear-gradient(to right, #d1ccccb9, rgba(255, 255, 255, 0.2)), url("/images/123456.jpg");
   background-position: top right;
-  position: absolute;
+ 
   background-repeat: no-repeat;
   padding: 6rem 1rem;
   position: relative;
-  z-index: -7;
+
   overflow: hidden;
 }
 
