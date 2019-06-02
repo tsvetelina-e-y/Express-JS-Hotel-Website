@@ -1,6 +1,13 @@
 var express = require('express');
 var path = require('path');
 var fileUpload = require('express-fileupload');
+var session = require('express-session');
+var validator = require('express-validator');
+
+var csrf = require('csurf');
+var csrfProtection = csrf();
+var passport = require('passport');
+var flash = require('connect-flash');
 
 var bodyParser = require('body-parser');
 var router = express.Router();
@@ -12,10 +19,18 @@ var LocationComponent = require('./models/LocationComponent');
 //Init app
 var app = express();
 
+require('./config/passport');
+
 //View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(session({secret: 'secret', resave: false, saveUninitialized: false}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(validator());
 
 //Set public folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -57,6 +72,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
+app.locals.errors = null;
+
 
 // app.get('/', function(req, res) {
 //     res.send('working');
@@ -89,6 +106,12 @@ app.use('/', router.get('/language', function (req, res) {
 
 //set routes
 
+app.get('*', function (req, res, next) {
+    res.locals.user = req.user || null;
+    next();
+});
+
+
 var pagesR = require('./routes/pagesR');
 var adminSpa = require('./routes/admin_spa');
 var adminLangindPagge = require('./routes/admin_landing_page');
@@ -98,6 +121,7 @@ var adminAboutUs = require('./routes/admin_about_us');
 var adminPricing = require('./routes/admin_pricing');
 var adminOffert = require('./routes/admin_offert');
 var adminImages = require('./routes/admin_images');
+var adminUser = require('./routes/admin_user');
 // var pages = require('./routes/pages.js');
 
 app.use('/', pagesR);
@@ -109,3 +133,4 @@ app.use('/admin', adminOffert);
 app.use('/admin', adminImages);
 app.use('/admin', adminSendMessage);
 app.use('/admin', adminLocation);
+app.use('/admin', adminUser);

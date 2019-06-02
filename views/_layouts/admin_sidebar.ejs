@@ -51,30 +51,37 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg"
-                                    alt="user" class="rounded-circle" width="31"></a>
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               
+                                        <%if (user) { %>
+                                   
+                                        <%= user.email %>
+                                   
+                                    <% } %>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
                                     My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i>
-                                    My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
-                                    Inbox</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i>
-                                    Account Setting</a>
-                                <div class="dropdown-divider"></div>
+                              
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i>
                                     Logout</a>
                                 <div class="dropdown-divider"></div>
-                                <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View
-                                        Profile</a></div>
+                               
                             </div>
                         </li>
 
                     </ul>
                 </div>
             </nav>
+
+            <% if(errors)  { %>
+            <% errors.forEach(function(error) { %>
+            <div class="alert-danger">
+                <%= error %>
+            </div>
+            <% }); %>
+            <% } %>
+
         </header>
 
         <aside class="left-sidebar" data-sidebarbg="skin5">
@@ -83,26 +90,33 @@
                     <ul id="sidebarnav" class="p-t-30">
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/landing-page"
-                                aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu"><%-  language == 'bg' ? 'Начална страница' : 'Land page' %></span></a></li>
+                                aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">
+                                    <%-  language == 'bg' ? 'Начална страница' : 'Land page' %></span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/about-us"
-                                aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu"><%-  language == 'bg' ? 'За нас' : 'About us' %></span></a></li>
+                                aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">
+                                    <%-  language == 'bg' ? 'За нас' : 'About us' %></span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/pricing"
-                                aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu"><%-  language == 'bg' ? 'Цени' : 'Pricing' %></span></a></li>
+                                aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">
+                                    <%-  language == 'bg' ? 'Цени' : 'Pricing' %></span></a></li>
 
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/spa"
-                                aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"><%-  language == 'bg' ? 'Спа и балнеология' : 'Spa and balneology' %></span></a></li>
+                                aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">
+                                    <%-  language == 'bg' ? 'Спа и балнеология' : 'Spa and balneology' %></span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/gallery"
-                                aria-expanded="false"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"><%-  language == 'bg' ? 'Галерия' : 'Gallery' %></span></a></li>
+                                aria-expanded="false"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu">
+                                    <%-  language == 'bg' ? 'Галерия' : 'Gallery' %></span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/location"
-                                aria-expanded="false"><i class="mdi mdi-guitar-pick"></i><span class="hide-menu"><%-  language == 'bg' ? 'Местоположение' : 'Location' %></span></a></li>
+                                aria-expanded="false"><i class="mdi mdi-guitar-pick"></i><span class="hide-menu">
+                                    <%-  language == 'bg' ? 'Местоположение' : 'Location' %></span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                                aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu"><%-  language == 'bg' ? 'Оферти' : 'Offerts' %> </span></a>
+                                aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">
+                                    <%-  language == 'bg' ? 'Оферти' : 'Offerts' %> </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="/admin/offerts/easter" class="sidebar-link"><i class="mdi mdi-emoticon"></i><span
                                             class="hide-menu"> Великден</span></a></li>
@@ -110,6 +124,11 @@
                                             class="hide-menu"> Font Awesome Icons </span></a></li>
                             </ul>
                         </li>
+
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/users"
+                                aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">
+                                    <%-  language == 'bg' ? 'Потребители' : 'Users' %></span></a></li>
 
 
                     </ul>

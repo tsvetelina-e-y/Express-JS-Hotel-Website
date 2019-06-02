@@ -1,0 +1,59 @@
+<% include ../_layouts/admin_sidebar %>
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Tables</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title m-b-0">Static Table</h5>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% let counter = 1; %>
+                        <% users.forEach(function(user) { %>
+
+                        <tr>
+                            <th scope="row">
+                                <%= counter++ %>
+                            </th>
+                            <td>
+                                <%= user.email %>
+                            </td>
+                            <td>delete</td>
+                        </tr>
+
+                        <% })%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <% include ../_layouts/admin_footer %>
