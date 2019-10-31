@@ -23,7 +23,7 @@
     "fs-extra": "^7.0.1",
     "mkdir": "0.0.2",
     "mkdirp": "^0.5.1",
-    "mongoose": "^5.5.2",
+    "mongoose": "^5.7.5",
     "nodemailer": "^6.2.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
